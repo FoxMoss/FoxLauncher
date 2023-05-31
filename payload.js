@@ -1,9 +1,3 @@
-let jsContent = `
-
-alert(1)
-
-`;
-
 async function makeFile(fs, fileName, fileType, content) {
   await new Promise((res) => {
     fs.root.getFile(
@@ -26,12 +20,10 @@ async function makeFile(fs, fileName, fileType, content) {
 }
 
 async function onInitFs(fs) {
-  let jsFile = await makeFile(fs, "test.js", "text/javascript", jsContent);
-
   let htmlContent = `{html}`;
   let htmlFile = await makeFile(fs, "test.html", "text/html", htmlContent);
 
   prompt("Your finished persistence URL:", htmlFile);
 }
 
-webkitRequestFileSystem(window.TEMPORARY, jsContent.length + 33, onInitFs);
+webkitRequestFileSystem(window.TEMPORARY, 1024*1024, onInitFs);
