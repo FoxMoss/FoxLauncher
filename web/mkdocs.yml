@@ -1,0 +1,10 @@
+site_name: FoxLauncher Docs
+theme:
+  name: material
+  palette:
+    scheme: slate
+  logo: img/favicon.png
+plugins:
+  - offline
+hooks:
+    - payload.py
