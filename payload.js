@@ -68,30 +68,40 @@ function uploadZip() {
           if (!zipEntry.dir) {
             zipEntry.async("blob").then(async function (blob) {
               if (zipEntry.name.includes("index.html")) {
-                const fileListItem = document.createElement("li");
-                const fileListLink = document.createElement("a");
-                const fileName = document.createTextNode(
-                  zipEntry.name.replace("/index.html", "")
-                );
-                fileListLink.href =
-                  "filesystem:" +
-                  window.location.origin +
-                  "/temporary/" +
-                  zipEntry.name;
-                fileListLink.appendChild(fileName);
-                fileListItem.appendChild(fileListLink);
-                fileList.appendChild(fileListItem);
+                indexEntries.push(zipEntry);
               }
               if (zipEntry.name.includes("config.flc")) {
                 shouldLoad = await checkConf(await zipEntry.async("text"));
               }
-              makeFileBlob(zipEntry.name, blob);
+              blobs[zipEntry.name] = blob;
             });
           } else {
             makeDir(zipEntry.name);
           }
         });
         resolve();
+      });
+
+      waitforchecks.then(() => {
+        if (!shouldLoad) {
+          alert("Permissions are probably wrong!");
+          return;
+        }
+        for (blob in blobs) {
+          makeFileBlob(blob, blobs[blob]);
+        }
+        for (index in indexEntries) {
+          const fileListItem = document.createElement("li");
+          const fileListLink = document.createElement("a");
+          const fileName = document.createTextNode(
+            index.name.replace("/index.html", "")
+          );
+          fileListLink.href =
+            "filesystem:" + window.location.origin + "/temporary/" + index.name;
+          fileListLink.appendChild(fileName);
+          fileListItem.appendChild(fileListLink);
+          fileList.appendChild(fileListItem);
+        }
       });
     });
   };
