@@ -20,8 +20,8 @@ async function makeFile(fs, fileName, fileType, content) {
 }
 
 async function onInitFs(fs) {
-  let htmlContent = `{html}`;
-  let htmlFile = await makeFile(fs, "index.html", "text/html", htmlContent);
+  let htmlFile = await makeFile(fs, "index.html", "text/html", `{html}`);
+  await makeFile(fs, "payload.js", "text/js", `{js}`);
 
   prompt("Your finished persistence URL:", htmlFile);
 }

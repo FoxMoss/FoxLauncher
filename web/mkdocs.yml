@@ -4,7 +4,17 @@ theme:
   palette:
     scheme: slate
   logo: img/favicon.png
+  icon:
+    repo: fontawesome/brands/github 
+
 plugins:
   - offline
+  - search
 hooks:
     - payload.py
+repo_url: https://github.com/FoxMoss/FoxLauncher
+repo_name: foxmoss/FoxLauncher
+nav:
+    - Install: 'index.md'
+    - Game Downloads: 'games.md'
+    - For Developers: 'for-devs.md'

@@ -1,16 +1,16 @@
 # FoxLauncher
 
-A completly local games launcher.
+A completely local games launcher.
 
 ![Logo](img/favicon.png "Logo")
 
 
 FoxLauncher is superior to other methods of playing games off your chromebook the net for various reasons:
 
-- It works with 90% of your unblocked games library with no tinkering from the devs.
+- It works with 90% of your unblocked games library with no tinkering from the developers.
 - Doesn't require bookmarklets.
-- Dosnt require an install games, nor to install the launcher.
-- Can use elevated chrome permisons.
+- Doesn't require an install games, nor to install the launcher.
+- Can use elevated chrome permissions.
 
 ## Install
 
@@ -26,7 +26,7 @@ To install FoxLauncher via bookmarks.
 3. Copy and paste the url it give you into a new tab.
 4. Bookmark this new page then, install the resources to finish setup!
 
-TODO: add more entry point
+TODO: add more entry points
 
 ### 2. Install Resources
 
@@ -45,7 +45,7 @@ Once the page loads move onto the next step!
 
 ### 3. Install games
 
-Now theres no more shanigians! Just games for here. Download any `.flz` from [games](games.md) and load them up through the launcher.
+Now theres no more shenanigans! Just games for here. Download any `.flz` from [games](games.md) and load them up through the launcher.
 
 Then they should pop-up in the game list section!
 
