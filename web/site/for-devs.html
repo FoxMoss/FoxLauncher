@@ -295,6 +295,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#creating-a-flc" class="md-nav__link">
+    Creating a .flc
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -336,8 +343,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#boykisser-api-injection" class="md-nav__link">
-    BoyKisser API Injection
+  <a href="#boykisser-api" class="md-nav__link">
+    BoyKisser API
   </a>
   
 </li>
@@ -403,6 +410,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#creating-a-flc" class="md-nav__link">
+    Creating a .flc
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -444,8 +458,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#boykisser-api-injection" class="md-nav__link">
-    BoyKisser API Injection
+  <a href="#boykisser-api" class="md-nav__link">
+    BoyKisser API
   </a>
   
 </li>
@@ -478,14 +492,29 @@
 <h2 id="info">Info</h2>
 <h3 id="what-are-all-these-funny-file-names">What are all these funny file names?</h3>
 <p><code>.flr</code> : FoxLauncher Resource, a js file
-<code>.flz</code> : FoxLauncher Zip, a zip file containing a folder of the same name</p>
+<code>.flz</code> : <a href="#creating-a-flc">FoxLauncher Zip</a>, a zip file containing a folder of the same name
+<code>.flc</code> : <a href="#creating-a-flc">FoxLauncher Config</a>, an xml file with config data.</p>
 <h3 id="creating-a-flz">Creating a .flz</h3>
-<p>An .flz will load provided it contains arbitrary zip data, but for usability its advised it contains a folder named the same thing as the folder.</p>
-<p>Heres an example example .flz file tree</p>
-<pre><code>tab-game.zip
-└── tab-game
-    ├── index.html
-    └── index.js
+<p>An <code>.flz</code> will load provided it contains mostly arbitrary zip data, but for usability its advised it contains a folder named the same thing as the folder.</p>
+<p>Heres an example example <code>.flz</code> file tree</p>
+<pre><code class="language-bash">tab-game.zip # zip file
+└── tab-game # index folder
+    ├── index.html # arbitrary contents
+    ├── index.js
+    └── config.flc
+</code></pre>
+<h3 id="creating-a-flc">Creating a .flc</h3>
+<p>A <code>config.flc</code> is searched for when installing an extension, this can be technically stored anywhere, but I advise you to put it in the <a href="#creating-a-flz">index folder</a>.</p>
+<p>A basic config looks like this:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;SETTINGS&gt;
+    &lt;NAME&gt;Tab Game&lt;/NAME&gt;
+    &lt;AUTHOR&gt;FoxMoss&lt;/AUTHOR&gt;
+    &lt;PERMISSIONS&gt;
+        &lt;PERM&gt;tabs&lt;/PERM&gt;
+    &lt;/PERMISSIONS&gt;
+&lt;/SETTINGS&gt;
+&lt;!-- GETTING GOOD USE OUT OF THE CAPS LOCK KEY, AREN'T YOU? --&gt;
 </code></pre>
 <h2 id="limits">Limits</h2>
 <h3 id="links-reloading-and-history">Links, Reloading, and History</h3>
@@ -497,7 +526,7 @@
 <h3 id="tab-control">Tab Control</h3>
 <p>Controlling tabs can instead be accessed by the chrome.tabs API. This API is accessible to most extensions and due to the possessive powers of FoxLauncher, if the filesystem is a child of an extension you can access the same control of an extension.</p>
 <p>You can read the documentation for this API here <a href="https://developer.chrome.com/docs/extensions/reference/tabs/">developer.chrome.com/docs/extensions/reference/tabs/</a>.</p>
-<h3 id="boykisser-api-injection">BoyKisser API Injection</h3>
+<h3 id="boykisser-api">BoyKisser API</h3>
 <p>The name says it all, you can probably guess the code for this one.</p>
 
 
