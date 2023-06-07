@@ -44,6 +44,15 @@ function checkFileExists(filePath) {
     );
   });
 }
+function grabIndices(zip) {
+  let ret = [];
+  for (file in zip.files) {
+    if (file.includes("index.html")) {
+      ret.push(zip.files[file]);
+    }
+  }
+  return ret;
+}
 function uploadZip() {
   const fileInput = document.getElementById("zipFileInput");
   const file = fileInput.files[0];
@@ -58,51 +67,42 @@ function uploadZip() {
     const zipFile = new JSZip();
 
     let blobs = {};
-    let indexEntries = [];
     let shouldLoad = false;
-    await zipFile.loadAsync(e.target.result).then(function (zip) {
+    await zipFile.loadAsync(e.target.result).then(async function (zip) {
       const fileList = document.getElementById("fileList");
 
-      var waitforchecks = new Promise((resolve, reject) => {
-        zip.forEach(function (relativePath, zipEntry, array) {
-          if (!zipEntry.dir) {
-            zipEntry.async("blob").then(async function (blob) {
-              if (zipEntry.name.includes("index.html")) {
-                indexEntries.push(zipEntry);
-              }
-              if (zipEntry.name.includes("config.flc")) {
-                shouldLoad = await checkConf(await zipEntry.async("text"));
-              }
-              blobs[zipEntry.name] = blob;
-            });
-          } else {
-            makeDir(zipEntry.name);
-          }
-        });
-        resolve();
-      });
+      let indexEntries =  grabIndices(zip);
 
-      waitforchecks.then(() => {
-        if (!shouldLoad) {
-          alert("Permissions are probably wrong!");
-          return;
+      for (fileName in zip.files) {
+        if (!zip.files[fileName].dir) {
+          let blob = await zip.files[fileName].async("blob");
+          if (zip.files[fileName].name.includes("config.flc")) {
+            shouldLoad = checkConf(await zip.files[fileName].async("text"));
+          }
+          blobs[zip.files[fileName].name] = blob;
+        } else {
+          makeDir(zip.files[fileName].name);
         }
-        for (blob in blobs) {
-          makeFileBlob(blob, blobs[blob]);
-        }
-        for (index in indexEntries) {
-          const fileListItem = document.createElement("li");
-          const fileListLink = document.createElement("a");
-          const fileName = document.createTextNode(
-            index.name.replace("/index.html", "")
-          );
-          fileListLink.href =
-            "filesystem:" + window.location.origin + "/temporary/" + index.name;
-          fileListLink.appendChild(fileName);
-          fileListItem.appendChild(fileListLink);
-          fileList.appendChild(fileListItem);
-        }
-      });
+      }
+      if (!(await shouldLoad)) {
+        alert("Permissions are probably wrong!");
+        return;
+      }
+      for (blob in blobs) {
+        makeFileBlob(blob, blobs[blob]);
+      }
+      for (index in indexEntries) {
+        const fileListItem = document.createElement("li");
+        const fileListLink = document.createElement("a");
+        const fileName = document.createTextNode(
+          indexEntries[index].name.replace("/index.html", "")
+        );
+        fileListLink.href =
+          "filesystem:" + window.location.origin + "/temporary/" + indexEntries[index].name;
+        fileListLink.appendChild(fileName);
+        fileListItem.appendChild(fileListLink);
+        fileList.appendChild(fileListItem);
+      }
     });
   };
 
