@@ -1,15 +1,21 @@
-document.getElementById("flr").addEventListener("click", uploadResource);
-document.getElementById("flz").addEventListener("click", uploadZip);
+window.addEventListener("DOMContentLoaded", (event) => {
+  document.getElementById("flr").addEventListener("click", uploadResource);
+  document.getElementById("flz").addEventListener("click", uploadZip);
 
-checkFileExists("zip.js").then((fileExists) => {
-  if (fileExists) {
-    document.querySelectorAll(".zipinst").forEach((element) => {
-      element.remove();
-    });
-    document.querySelectorAll(".zip").forEach((element) => {
-      element.disabled = false;
-    });
-  }
+  checkFileExists("zip.js").then((fileExists) => {
+    if (fileExists) {
+      document.querySelectorAll(".zipinst").forEach((element) => {
+        element.remove();
+      });
+      document.querySelectorAll(".zip").forEach((element) => {
+        element.removeAttribute("disabled");
+
+      });
+    }
+  });
+
+  scanFiles();
+  scanPerms();
 });
 
 var specialPerms = [];
@@ -71,7 +77,7 @@ function uploadZip() {
     await zipFile.loadAsync(e.target.result).then(async function (zip) {
       const fileList = document.getElementById("fileList");
 
-      let indexEntries =  grabIndices(zip);
+      let indexEntries = grabIndices(zip);
 
       for (fileName in zip.files) {
         if (!zip.files[fileName].dir) {
@@ -98,7 +104,10 @@ function uploadZip() {
           indexEntries[index].name.replace("/index.html", "")
         );
         fileListLink.href =
-          "filesystem:" + window.location.origin + "/temporary/" + indexEntries[index].name;
+          "filesystem:" +
+          window.location.origin +
+          "/temporary/" +
+          indexEntries[index].name;
         fileListLink.appendChild(fileName);
         fileListItem.appendChild(fileListLink);
         fileList.appendChild(fileListItem);
@@ -233,5 +242,3 @@ async function scanFiles() {
     });
   });
 }
-scanFiles();
-scanPerms();
