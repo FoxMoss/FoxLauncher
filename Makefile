@@ -5,8 +5,6 @@ else
 all:	compile package clean
 endif
 
-
-
 compile:
 	minify payload.html > build/minifed.html
 

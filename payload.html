@@ -15,15 +15,14 @@
       <div class="border">
         <table>
           <tr>
-            <td>
+            <td class="infotd">
               <h1>FoxLauncher</h1>
 
               <div class="textcontent">
                 Made by <a href="https://foxmoss.com/personal/">foxmoss</a> from
                 <a href="mailto:foxmoss@mediaology.com"
                   >foxmoss@mediaology.com</a
-                >. <br />
-                Read the documentation at
+                >. Read the documentation at
                 <a href="https://foxmoss.com/foxlauncher"
                   >foxmoss.com/foxlauncher</a
                 >
@@ -34,21 +33,18 @@
                   <input type="file" id="resourcesFileInput" />
                   Upload .flr
                 </label>
-                <button id="flr" class="zipinst">
-                  Upload the zip.flr file!
-                </button>
+                <button id="flr" class="zipinst">Load the zip.flr file!</button>
               </div>
 
               <h3>Permissions:</h3>
               <ul id="permList"></ul>
-
-              <span class="seperator"></span>
+            </td>
+            <td>
+              <div class="seperator"></div>
             </td>
 
             <td>
-
-
-              <h2>Game Bookmarks:</h3>
+              <h2>Game Bookmarks:</h2>
               <ul id="fileList"></ul>
 
               <label class="zipFileUpload upload zip" disabled>
@@ -56,8 +52,7 @@
                 Upload .flz
               </label>
 
-              <button id="flz" class="zip" disabled>Load a .flz file!</button>
-
+              <button id="flz" class="zip" disabled>Load the .flz file!</button>
             </td>
           </tr>
         </table>

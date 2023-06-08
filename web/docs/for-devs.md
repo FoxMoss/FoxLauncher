@@ -32,10 +32,10 @@ A basic config looks like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SETTINGS>
-    <NAME>Tab Game</NAME>
+    <NAME>DONT KISS THE BOY !</NAME>
     <AUTHOR>FoxMoss</AUTHOR>
     <PERMISSIONS>
-        <PERM>tabs</PERM>
+        <PERM>boykisser</PERM>
     </PERMISSIONS>
 </SETTINGS>
 <!-- GETTING GOOD USE OUT OF THE CAPS LOCK KEY, AREN'T YOU? -->
@@ -63,4 +63,4 @@ You can read the documentation for this API here [developer.chrome.com/docs/exte
 
 ### BoyKisser API
 
-The name says it all, you can probably guess the code for this one.
+The name says it all.

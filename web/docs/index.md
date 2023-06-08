@@ -12,6 +12,9 @@ FoxLauncher is superior to other methods of playing games off your chromebook th
 - Doesn't require an install games, nor to install the launcher.
 - Can use elevated chrome permissions.
 
+
+NOTE: The design and style of FoxLauncher is being rapidly prototyped, screenshots may look different to the actual product, functionality should stay the same.
+
 ## Install
 
 ### 1. Install Launcher

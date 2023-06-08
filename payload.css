@@ -91,22 +91,24 @@ a {
 a:visited {
   color: var(--old);
 }
-td {
-  width: 50%;
-  vertical-align: top;
+.infotd {
+  width: 40%;
+
   padding: 10px;
+}
+td {
+  vertical-align: top;
 }
 h2 {
   margin-top: 30px;
 }
 .seperator {
-    border:1px solid var(--bg1);
-    border-radius: 10px; 
-    height:200px;
-    position:absolute;
-    top:30%;
-    left: 50%;
+  border-radius: 10px;
+  background: linear-gradient(0deg, transparent 30%, var(--txt) 40%, var(--txt) 60%, transparent 70%);
+  width: 3px;
+  height: 100%;
 }
 table {
   height: 100%;
 }
+    
