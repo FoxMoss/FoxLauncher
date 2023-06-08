@@ -10,13 +10,15 @@ endif
 compile:
 	minify payload.html > build/minifed.html
 
+	minify payload.css > build/minifed.css
+
 	~/.local/share/nvm/v20.2.0/bin/uglifyjs payload.js > build/minifed.js
 
 	awk 'BEGIN { html = ""; while((getline line < "build/minifed.html") > 0) html = html line "\n" } { gsub("{html}", html) } 1' loader.js > build/temp1.js
 
 	awk 'BEGIN { js = ""; while((getline line < "build/minifed.js") > 0) js = js line "\n" } { gsub("{js}", js) } 1' build/temp1.js > build/temp2.js
 
-	awk 'BEGIN { css = ""; while((getline line < "payload.css") > 0) css = css line "\n" } { gsub("{css}", css) } 1' build/temp2.js > build/temp25.js
+	awk 'BEGIN { css = ""; while((getline line < "build/minifed.css") > 0) css = css line "\n" } { gsub("{css}", css) } 1' build/temp2.js > build/temp25.js
 
 	~/.local/share/nvm/v20.2.0/bin/uglifyjs build/temp25.js > build/temp3.js
 
@@ -44,5 +46,6 @@ else
 	rm build/temp3.js
 
 	rm build/minifed.js
+	rm build/minifed.css
 	rm build/minifed.html
 endif

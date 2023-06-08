@@ -13,34 +13,54 @@
   <body>
     <div class="content">
       <div class="border">
-        <h1>FoxLauncher</h1>
+        <table>
+          <tr>
+            <td>
+              <h1>FoxLauncher</h1>
 
-        <div class="textcontent">
-          Made by <a href="https://foxmoss.com/personal/">foxmoss</a> from
-          <a href="mailto:foxmoss@mediaology.com">foxmoss@mediaology.com</a>. <br>
-          Read the documentation at <a href="https://foxmoss.com/foxlauncher">foxmoss.com/foxlauncher</a>
-        </div>
+              <div class="textcontent">
+                Made by <a href="https://foxmoss.com/personal/">foxmoss</a> from
+                <a href="mailto:foxmoss@mediaology.com"
+                  >foxmoss@mediaology.com</a
+                >. <br />
+                Read the documentation at
+                <a href="https://foxmoss.com/foxlauncher"
+                  >foxmoss.com/foxlauncher</a
+                >
+              </div>
 
-        <div>
-          <label class="resourcesFileUpload upload zipinst">
-            <input type="file" id="resourcesFileInput" />
-            Upload .flr
-          </label>
-          <button id="flr" class="zipinst">Upload the zip.flr file!</button>
-        </div>
+              <div>
+                <label class="resourcesFileUpload upload zipinst">
+                  <input type="file" id="resourcesFileInput" />
+                  Upload .flr
+                </label>
+                <button id="flr" class="zipinst">
+                  Upload the zip.flr file!
+                </button>
+              </div>
 
-        <label class="zipFileUpload upload zip" disabled>
-          <input type="file" id="zipFileInput" class="zip" disabled />
-          Upload .flz
-        </label>
+              <h3>Permissions:</h3>
+              <ul id="permList"></ul>
 
-        <button id="flz" class="zip" disabled>Load a .flz file!</button>
+              <span class="seperator"></span>
+            </td>
 
-        <h3>Game Bookmarks:</h3>
-        <ul id="fileList"></ul>
+            <td>
 
-        <h3>Permissions:</h3>
-        <ul id="permList"></ul>
+
+              <h2>Game Bookmarks:</h3>
+              <ul id="fileList"></ul>
+
+              <label class="zipFileUpload upload zip" disabled>
+                <input type="file" id="zipFileInput" class="zip" disabled />
+                Upload .flz
+              </label>
+
+              <button id="flz" class="zip" disabled>Load a .flz file!</button>
+
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </body>
