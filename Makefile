@@ -1,9 +1,14 @@
-
 ifeq ($(DEBUG), 1)
+all:	test
+else ifeq ($(DEBUG), 2)
 all:	compile clean serve
 else
 all:	compile package clean
 endif
+
+test:
+	cp res/zip.flr ./zip.js
+	php -S localhost:8080
 
 compile:
 	minify payload.html > build/minifed.html
@@ -46,4 +51,5 @@ else
 	rm build/minifed.js
 	rm build/minifed.css
 	rm build/minifed.html
+
 endif

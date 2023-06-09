@@ -32,11 +32,12 @@ A basic config looks like this:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SETTINGS>
-    <NAME>DONT KISS THE BOY !</NAME>
-    <AUTHOR>FoxMoss</AUTHOR>
-    <PERMISSIONS>
+    <NAME>A Dark Room</NAME>
+    <AUTHOR>Doublespeak Games</AUTHOR>
+    <REQUIREMENTS>
         <PERM>boykisser</PERM>
-    </PERMISSIONS>
+        <PERM>cspinline</PERM>
+    </REQUIREMENTS>
 </SETTINGS>
 <!-- GETTING GOOD USE OUT OF THE CAPS LOCK KEY, AREN'T YOU? -->
 ```
@@ -47,8 +48,13 @@ A basic config looks like this:
 
 Basically any page load request that was not initiated by the browser or the user for a page using a `filesystem:` url will be blocked by chrome. 
 
-Please see [Tab Control](#tab-control)
+Please see [Tab Control](#tab-control).
 
+### Inline JS
+
+When FoxLauncher is launched from an extension it is forced to comply with the extensions CSP policies, this includes many CSPs restriction of [unsafe inline](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src). We can use point-blank to get around this, but my personal suggestion is to just put the script in another file when developing for FoxLauncher.
+
+With an XML parser someone could make a script to auto covert all html files in a folder to not use unsafe inline, but I don't feel like doing that.
 ## Extended Privileges
 
 Most extended privileges FoxLaunched sites have can be summed up fairly easily. If FoxLauncher is installed on an extension page, you can then access the same chrome APIs that it has access to.

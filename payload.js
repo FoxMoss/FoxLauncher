@@ -9,17 +9,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
       });
       document.querySelectorAll(".zip").forEach((element) => {
         element.removeAttribute("disabled");
-
       });
     }
   });
 
   scanFiles();
   scanPerms();
+
+  if (chrome.tabs != undefined) {
+    document.body.addEventListener("click", function (e) {
+      if (e.target) {
+        // I know this hurts your eyes, && just doesn't work with awk
+        if (e.target.nodeName == "A") {
+          chrome.tabs.create({
+            url: e.target.href,
+          });
+        }
+      }
+    });
+  }
 });
 
+var cspInline = false;
 var specialPerms = [];
 
+// Upload the zip.js file into the filesystem
 async function uploadResource() {
   const fileInput = document.getElementById("resourcesFileInput");
   const file = fileInput.files[0];
@@ -27,6 +41,7 @@ async function uploadResource() {
   alert("Reload this tab.");
 }
 
+// Check if file exists in the file system.
 function checkFileExists(filePath) {
   return new Promise((resolve, reject) => {
     window.webkitRequestFileSystem(
@@ -50,6 +65,8 @@ function checkFileExists(filePath) {
     );
   });
 }
+
+// Grab all index.html files for a zip archive
 function grabIndices(zip) {
   let ret = [];
   for (file in zip.files) {
@@ -59,6 +76,8 @@ function grabIndices(zip) {
   }
   return ret;
 }
+
+// Take a uploaded .flz and process it into the file system
 function uploadZip() {
   const fileInput = document.getElementById("zipFileInput");
   const file = fileInput.files[0];
@@ -118,6 +137,7 @@ function uploadZip() {
   reader.readAsArrayBuffer(file);
 }
 
+// Check if some permissions are in your systems permissions.
 function checkPerms(requiredPerms) {
   return new Promise((resolve) => {
     requiredPerms.forEach((perm) => {
@@ -129,6 +149,7 @@ function checkPerms(requiredPerms) {
   });
 }
 
+// Check if a text is a valid conf file for your system
 async function checkConf(conf) {
   let parser = new DOMParser();
   let confDoc = parser.parseFromString(conf, "text/xml");
@@ -142,6 +163,8 @@ function getAllPerms() {
     chrome.permissions.getAll((response) => resolve(response["permissions"]));
   });
 }
+
+// Create a list of all chrome.permissions
 async function scanPerms() {
   const permList = document.getElementById("permList");
   try {
@@ -149,6 +172,9 @@ async function scanPerms() {
     specialPerms.push("boykisser");
   } catch (error) {
     specialPerms = ["boykisser"];
+  }
+  if (cspInline) {
+    specialPerms.push("cspinline");
   }
   specialPerms.forEach((perm) => {
     const permListItem = document.createElement("li");
@@ -158,6 +184,7 @@ async function scanPerms() {
   });
 }
 
+// Add file to FS using blob
 async function makeFileBlob(fileName, content) {
   let fs = await new Promise((res) => {
     window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024 * 10, res);
@@ -183,6 +210,7 @@ async function makeFileBlob(fileName, content) {
   });
 }
 
+// Add file to FS path using raw text
 async function makeFile(fileName, content) {
   let fs = await new Promise((res) => {
     window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024 * 10, res);
@@ -207,6 +235,8 @@ async function makeFile(fileName, content) {
     });
   });
 }
+
+// Add dir to FS
 async function makeDir(name) {
   let fs = await new Promise((res) => {
     window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024 * 10, res);
@@ -214,6 +244,7 @@ async function makeDir(name) {
   fs.root.getDirectory(name, { create: true }, (directoryEntry) => {});
 }
 
+// Look in the FS for folders
 async function scanFiles() {
   let fs = await new Promise((res) => {
     window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024 * 10, res);

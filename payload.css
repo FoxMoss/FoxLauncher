@@ -91,24 +91,33 @@ a {
 a:visited {
   color: var(--old);
 }
+
+td {
+  vertical-align: top;
+}
 .infotd {
   width: 40%;
 
   padding: 10px;
 }
-td {
-  vertical-align: top;
-}
 h2 {
   margin-top: 30px;
 }
+.seperatorContainer {
+  width: 0.8%;
+}
 .seperator {
   border-radius: 10px;
-  background: linear-gradient(0deg, transparent 30%, var(--txt) 40%, var(--txt) 60%, transparent 70%);
-  width: 3px;
+  background: linear-gradient(
+    0deg,
+    transparent 30%,
+    var(--txt) 40%,
+    var(--txt) 60%,
+    transparent 70%
+  );
+  width: 100%;
   height: 100%;
 }
 table {
   height: 100%;
 }
-    
