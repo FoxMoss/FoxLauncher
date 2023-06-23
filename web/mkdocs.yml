@@ -1,6 +1,6 @@
 site_name: FoxLauncher Docs
 theme:
-  name: material
+  name: readthedocs #material
   palette:
     scheme: slate
   logo: img/favicon.png
@@ -8,7 +8,7 @@ theme:
     repo: fontawesome/brands/github 
 
 plugins:
-  - offline
+  #- offline
   - search
 hooks:
     - payload.py

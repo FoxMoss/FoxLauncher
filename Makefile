@@ -15,7 +15,7 @@ compile:
 
 	minify payload.css > build/minifed.css
 
-	~/.local/share/nvm/v20.2.0/bin/uglifyjs payload.js > build/minifed.js
+	uglifyjs payload.js > build/minifed.js
 
 	awk 'BEGIN { html = ""; while((getline line < "build/minifed.html") > 0) html = html line "\n" } { gsub("{html}", html) } 1' loader.js > build/temp1.js
 
@@ -23,11 +23,11 @@ compile:
 
 	awk 'BEGIN { css = ""; while((getline line < "build/minifed.css") > 0) css = css line "\n" } { gsub("{css}", css) } 1' build/temp2.js > build/temp25.js
 
-	~/.local/share/nvm/v20.2.0/bin/uglifyjs build/temp25.js > build/temp3.js
+	uglifyjs build/temp25.js > build/temp3.js
 
-	cat build/temp3.js | ~/.local/share/nvm/v20.2.0/bin/node -e "const code = require('fs').readFileSync(0, 'utf-8').trim(); console.log(encodeURIComponent('(function(){' + code + '})();'));" > build/compiled.txt
+	cat build/temp3.js | node -e "const code = require('fs').readFileSync(0, 'utf-8').trim(); console.log(encodeURIComponent('(function(){' + code + '})();'));" > build/compiled.txt
 
-	cat build/compiled.txt | ~/.local/share/nvm/v20.2.0/bin/node -e "const code = require('fs').readFileSync(0, 'utf-8').trim(); console.log(encodeURIComponent('(function(){' + code + '})();'));" > build/encodedc.txt
+	cat build/compiled.txt | node -e "const code = require('fs').readFileSync(0, 'utf-8').trim(); console.log(encodeURIComponent('(function(){' + code + '})();'));" > build/encodedc.txt
 
 	cp -R res/* web/docs/assets/res/
 
