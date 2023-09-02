@@ -322,6 +322,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#inline-js" class="md-nav__link">
+    Inline JS
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -437,6 +444,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#inline-js" class="md-nav__link">
+    Inline JS
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -508,18 +522,22 @@
 <p>A basic config looks like this:</p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;SETTINGS&gt;
-    &lt;NAME&gt;Tab Game&lt;/NAME&gt;
-    &lt;AUTHOR&gt;FoxMoss&lt;/AUTHOR&gt;
-    &lt;PERMISSIONS&gt;
-        &lt;PERM&gt;tabs&lt;/PERM&gt;
-    &lt;/PERMISSIONS&gt;
+    &lt;NAME&gt;A Dark Room&lt;/NAME&gt;
+    &lt;AUTHOR&gt;Doublespeak Games&lt;/AUTHOR&gt;
+    &lt;REQUIREMENTS&gt;
+        &lt;PERM&gt;boykisser&lt;/PERM&gt;
+        &lt;PERM&gt;cspinline&lt;/PERM&gt;
+    &lt;/REQUIREMENTS&gt;
 &lt;/SETTINGS&gt;
 &lt;!-- GETTING GOOD USE OUT OF THE CAPS LOCK KEY, AREN'T YOU? --&gt;
 </code></pre>
 <h2 id="limits">Limits</h2>
 <h3 id="links-reloading-and-history">Links, Reloading, and History</h3>
 <p>Basically any page load request that was not initiated by the browser or the user for a page using a <code>filesystem:</code> url will be blocked by chrome. </p>
-<p>Please see <a href="#tab-control">Tab Control</a></p>
+<p>Please see <a href="#tab-control">Tab Control</a>.</p>
+<h3 id="inline-js">Inline JS</h3>
+<p>When FoxLauncher is launched from an extension it is forced to comply with the extensions CSP policies, this includes many CSPs restriction of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src">unsafe inline</a>. We can use point-blank to get around this, but my personal suggestion is to just put the script in another file when developing for FoxLauncher.</p>
+<p>With an XML parser someone could make a script to auto covert all html files in a folder to not use unsafe inline, but I don't feel like doing that.</p>
 <h2 id="extended-privileges">Extended Privileges</h2>
 <p>Most extended privileges FoxLaunched sites have can be summed up fairly easily. If FoxLauncher is installed on an extension page, you can then access the same chrome APIs that it has access to.</p>
 <p>Check <a href="https://developer.chrome.com/docs/extensions/reference/">here</a> for the list of all chrome APIs.</p>
@@ -527,7 +545,7 @@
 <p>Controlling tabs can instead be accessed by the chrome.tabs API. This API is accessible to most extensions and due to the possessive powers of FoxLauncher, if the filesystem is a child of an extension you can access the same control of an extension.</p>
 <p>You can read the documentation for this API here <a href="https://developer.chrome.com/docs/extensions/reference/tabs/">developer.chrome.com/docs/extensions/reference/tabs/</a>.</p>
 <h3 id="boykisser-api">BoyKisser API</h3>
-<p>The name says it all, you can probably guess the code for this one.</p>
+<p>The name says it all.</p>
 
 
 
