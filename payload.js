@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   scanPerms();
 
   if (chrome.tabs != undefined) {
-    document.body.addEventListener("click", function (e) {
+    document.body.addEventListener("click", function(e) {
       if (e.target) {
         // I know this hurts your eyes, && just doesn't work with awk
         if (e.target.nodeName == "A") {
@@ -47,19 +47,19 @@ function checkFileExists(filePath) {
     window.webkitRequestFileSystem(
       window.TEMPORARY,
       1024 * 1024 * 10,
-      function (fs) {
+      function(fs) {
         fs.root.getFile(
           filePath,
           { create: false },
-          function (fileEntry) {
+          function(fileEntry) {
             resolve(true);
           },
-          function (error) {
+          function(error) {
             resolve(false);
           }
         );
       },
-      function (error) {
+      function(error) {
         reject(error);
       }
     );
@@ -88,17 +88,17 @@ function uploadZip() {
   }
 
   const reader = new FileReader();
-  reader.onload = async function (e) {
+  reader.onload = async function(e) {
     const zipFile = new JSZip();
 
     let blobs = {};
     let shouldLoad = false;
-    await zipFile.loadAsync(e.target.result).then(async function (zip) {
+    await zipFile.loadAsync(e.target.result).then(async function(zip) {
       const fileList = document.getElementById("fileList");
 
       let indexEntries = grabIndices(zip);
 
-      for (fileName in zip.files) {
+      for (let fileName in zip.files) {
         if (!zip.files[fileName].dir) {
           let blob = await zip.files[fileName].async("blob");
           if (zip.files[fileName].name.includes("config.flc")) {
@@ -106,7 +106,8 @@ function uploadZip() {
           }
           blobs[zip.files[fileName].name] = blob;
         } else {
-          makeDir(zip.files[fileName].name);
+          await makeDir(zip.files[fileName].name.split("/")[0]);
+          await makeDir(zip.files[fileName].name);
         }
       }
       if (!(await shouldLoad)) {
@@ -114,7 +115,7 @@ function uploadZip() {
         return;
       }
       for (blob in blobs) {
-        makeFileBlob(blob, blobs[blob]);
+        await makeFileBlob(blob, blobs[blob]);
       }
       for (index in indexEntries) {
         const fileListItem = document.createElement("li");
@@ -241,7 +242,7 @@ async function makeDir(name) {
   let fs = await new Promise((res) => {
     window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024 * 10, res);
   });
-  fs.root.getDirectory(name, { create: true }, (directoryEntry) => {});
+  fs.root.getDirectory(name, { create: true }, (directoryEntry) => { });
 }
 
 // Look in the FS for folders
