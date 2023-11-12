@@ -7,3 +7,8 @@ build/temp3.js
 build/minifed.js
 build/minifed.css
 build/minifed.html
+
+web/__pycache__
+web/assets/res
+web/site
+

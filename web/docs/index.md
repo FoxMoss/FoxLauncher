@@ -62,5 +62,5 @@ FoxLauncher is made by FoxMoss, with no other contributors.
 
 Support the project by donating to my [paypal](https://www.paypal.com/donate/?hosted_button_id=DBWDWVZF7JFEC). 
 
-If your a student, a teacher, or a system admin wanting to block FoxLauncher ;) shoot me an email at [foxmoss@mediaology.com](mailto:foxmoss@mediaology.com).
+If your a student, a teacher, or a system admin wanting to block FoxLauncher shoot me an email at [foxmoss@mediaology.com](mailto:foxmoss@mediaology.com).
 Or find other ways to conact me at [foxmoss.com/personal/](https://foxmoss.com/personal/).

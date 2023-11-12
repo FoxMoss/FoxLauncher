@@ -12,7 +12,7 @@ FoxLauncher is a platform that has a good deal of benefits that typical websites
 
 ### Creating a .flz
 
-An `.flz` will load provided it contains mostly arbitrary zip data, but for usability its advised it contains a folder named the same thing as the folder.
+An `.flz` will load provided it contains zip data and a config.flc file, but for usability its advised it contains a folder named the same thing as the folder.
 
 Heres an example example `.flz` file tree
 ```bash
@@ -35,7 +35,6 @@ A basic config looks like this:
     <NAME>A Dark Room</NAME>
     <AUTHOR>Doublespeak Games</AUTHOR>
     <REQUIREMENTS>
-        <PERM>boykisser</PERM>
         <PERM>cspinline</PERM>
     </REQUIREMENTS>
 </SETTINGS>
