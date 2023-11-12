@@ -1,3 +1,8 @@
+---
+title: FoxLauncher
+summary: A completely local games launcher.
+---
+
 # FoxLauncher
 
 A completely local games launcher.
