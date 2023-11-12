@@ -34,7 +34,10 @@ compile:
 package:
 	cd web && mkdocs build && cd ../
 
+	cp -r web/site/* docs/
 	zip -r build/foxlauncherdocs.zip web/site/*
+	
+	rm -r web/site/*
 
 serve:
 	cd web && mkdocs serve && cd ../
