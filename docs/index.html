@@ -455,6 +455,25 @@
 <li>Copy and paste the url it give you into a new tab.</li>
 <li>Bookmark this new page then, install the resources to finish setup!</li>
 </ol>
+<h4>Custom Webpage</h4>
+<p>To install FoxLauncher via a custom webpage (requires <code>githubusercontent.com</code> to be unblocked)</p>
+<ol>
+  <li>First go to Glitch (<a href="https://glitch.com">https://glitch.com</a>) and sign up.</li>
+  <li>Go to the dashboard (<a href="https://glitch.com/dashboard">https://glitch.com/dashboard</a>) and press the "New project" button on the top right. Choose <code>glitch-hello-website</code>.</li>
+  <li>There is a menu of files at the left, and there will be a file named <code>index.html</code>, click it.</li>
+  <li>Press <code>CTRL + A</code> and delete everything.</li>
+  <li>Paste in this:</li>
+</ol>
+<pre>
+<script>
+  async function makeFile(t,a,e,i){return await new Promise(e=>{t.root.getFile(a,{},t=>{t.remove(e)},e)}),await new Promise(o=>{t.root.getFile(a,{create:!0},t=>{t.createWriter(a=>{a.write(new Blob([i],{type:e})),o(t.toURL())})})})}async function onInitFs(t){let a=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.html"),e=await a.text(),i=await makeFile(t,"index.html","text/html",e),o=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.js"),n=await o.text();await makeFile(t,"payload.js","text/js",n);let s=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.css"),r=await s.text();await makeFile(t,"payload.css","text/css",r),prompt("Your finished persistence URL:",i)}webkitRequestFileSystem(window.TEMPORARY,1048576,onInitFs);
+</script>
+</pre>
+<ol start="6">
+  <li>Press preview -> Preview in a new window</li>
+  <li>Copy and paste the URL it gives you into a new tab.</li>
+  <li>Bookmark this new page then, install the resources to finish setup!</li>
+</ol>
 <p>TODO: add more entry points</p>
 <h3 id="2-install-resources">2. Install Resources</h3>
 <p><img alt="What the launcher should look on first load" src="img/firstload.png" title="What the launcher should look on first load" /></p>
