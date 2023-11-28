@@ -15,7 +15,7 @@ FoxLauncher is superior to other methods of playing games off your chromebook th
 - It works with 90% of your unblocked games library with no tinkering from the developers.
 - Doesn't require bookmarklets.
 - Doesn't require an install games, nor to install the launcher.
-- Can use elevated chrome permissions.
+- Can use elevated Chrome permissions.
 
 
 NOTE: The design and style of FoxLauncher is being rapidly prototyped, screenshots may look different to the actual product, functionality should stay the same.
@@ -24,15 +24,32 @@ NOTE: The design and style of FoxLauncher is being rapidly prototyped, screensho
 
 ### 1. Install Launcher
 
-Theres a couple ways to inject the entry point into a page, due to the only requirement being ACE.
+There are a couple of ways to inject the entry point into a page, due to the only requirement being ACE.
 
 #### Bookmark
 To install FoxLauncher via bookmarks.
 
 1. First drag the <a href="javascript:{payload}">FoxLauncher</a> bookmark into your browser's bookmark bar.
 2. Go to **any** website you can access at school, this does not include the new tab page.
-3. Copy and paste the url it give you into a new tab.
+3. Copy and paste the URL it gives you into a new tab.
 4. Bookmark this new page then, install the resources to finish setup!
+
+5. #### Custom Webpage
+To install FoxLauncher via a custom webpage (requires `githubusercontent.com` to be unblocked)
+
+1. First go to Glitch (https://glitch.com) and sign up.
+2. Go to the dashboard (https://glitch.com/dashboard) and press the "New project" button on the top right. Choose `glitch-hello-website`.
+3. There is a menu of files at the left, and there will be a file named `index.html`, click it.
+4. Press `CTRL + A` and delete everything.
+5. Paste in this:
+```html
+<script>
+  async function makeFile(t,a,e,i){return await new Promise(e=>{t.root.getFile(a,{},t=>{t.remove(e)},e)}),await new Promise(o=>{t.root.getFile(a,{create:!0},t=>{t.createWriter(a=>{a.write(new Blob([i],{type:e})),o(t.toURL())})})})}async function onInitFs(t){let a=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.html"),e=await a.text(),i=await makeFile(t,"index.html","text/html",e),o=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.js"),n=await o.text();await makeFile(t,"payload.js","text/js",n);let s=await fetch("https://raw.githubusercontent.com/FoxMoss/FoxLauncher/main/payload.css"),r=await s.text();await makeFile(t,"payload.css","text/css",r),prompt("Your finished persistence URL:",i)}webkitRequestFileSystem(window.TEMPORARY,1048576,onInitFs);
+</script>
+```
+6. Press preview -> Preview in a new window
+7. Copy and paste the URL it gives you into a new tab.
+8. Bookmark this new page then, install the resources to finish setup!
 
 TODO: add more entry points
 
